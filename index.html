@@ -543,7 +543,161 @@ body {
 }
 .cg-val strong { color: var(--white); }
 
-/* ── FOOTER ── */
+/* ── 50-YEAR ROADMAP ── */
+.roadmap-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--dark);
+  cursor: pointer;
+  margin: 1.5rem 0 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+.roadmap-toggle:hover { background: var(--mid); border-color: var(--gold); }
+.rm-plus {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--gold);
+  line-height: 1;
+  width: 32px;
+  flex-shrink: 0;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.rm-plus.open { transform: rotate(45deg); }
+.rm-toggle-text { display: flex; flex-direction: column; gap: 3px; }
+.rm-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+.rm-hint {
+  font-size: 13px;
+  color: var(--mute);
+  font-style: italic;
+}
+
+.roadmap-panel {
+  display: none;
+  border: 1px solid var(--line);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.roadmap-panel.open { display: block; }
+.roadmap-inner {
+  padding: 2rem 2.5rem;
+  background: var(--off);
+}
+.rm-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+.rm-headline {
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.rm-headline em { font-style: italic; color: var(--gold2); }
+.rm-body {
+  font-size: 14px;
+  color: var(--pale);
+  line-height: 1.8;
+  font-style: italic;
+  max-width: 64ch;
+  margin-bottom: 2rem;
+}
+
+.rm-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid var(--line);
+  margin-left: 10px;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+.rm-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1rem 0 1rem 1.5rem;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+}
+.rm-stage:last-child { border-bottom: none; }
+.rm-stage:hover { background: rgba(255,255,255,0.02); }
+.rm-stage-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: absolute;
+  left: -7px;
+  box-shadow: 0 0 0 3px var(--off);
+}
+.rm-stage-content { padding-left: 0.5rem; }
+.rm-stage-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 4px;
+}
+.rm-stage-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  font-family: var(--body);
+}
+.rm-stage-body {
+  font-size: 13px;
+  color: var(--pale);
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.rm-invariant {
+  background: var(--dark);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 1.1rem 1.5rem;
+}
+.rm-inv-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.rm-inv-body {
+  font-size: 13px;
+  color: var(--pale);
+  line-height: 1.7;
+  font-style: italic;
+}
+.rm-inv-body strong { color: var(--white); font-style: normal; }
+
 .site-footer {
   padding: 2rem 8vw;
   border-top: 1px solid var(--line);
@@ -949,6 +1103,71 @@ body {
     </div>
   </div>
 
+  <!-- 50-YEAR ROADMAP EXPANDABLE -->
+  <div class="roadmap-toggle" onclick="rmTog()" id="rmBtn">
+    <span class="rm-plus" id="rmIcon">+</span>
+    <div class="rm-toggle-text">
+      <span class="rm-label">The 50-year roadmap</span>
+      <span class="rm-hint">Every new indicator is just a new dropdown item. The engine doesn't change.</span>
+    </div>
+  </div>
+
+  <div class="roadmap-panel" id="rmPanel">
+    <div class="roadmap-inner">
+      <div class="rm-eyebrow">NPA · Long Horizon · Ukubona LLC</div>
+      <h3 class="rm-headline">The tensor keeps expanding.<br><em>The scalar stays readable.</em></h3>
+      <p class="rm-body">Every new national priority — teenage pregnancy, climate stress, mineral revenue, youth employment, disease burden — is simply a new item in the dropdown. The engine does not change. The map does not change. The board's experience does not change. What changes is the depth of what Uganda can see about itself.</p>
+
+      <div class="rm-timeline">
+        <div class="rm-stage">
+          <div class="rm-stage-dot" style="background:var(--red)"></div>
+          <div class="rm-stage-content">
+            <div class="rm-stage-label">Now — 2026</div>
+            <div class="rm-stage-title">Uganda · Health &amp; Social Indicators</div>
+            <div class="rm-stage-body">146 districts. Mental health, teenage pregnancy, workforce gaps. The twin is live. The pipeline is open.</div>
+          </div>
+        </div>
+        <div class="rm-stage">
+          <div class="rm-stage-dot" style="background:var(--orange)"></div>
+          <div class="rm-stage-content">
+            <div class="rm-stage-label">2026 – 2028</div>
+            <div class="rm-stage-title">Every Ministry · Every Kingdom</div>
+            <div class="rm-stage-body">Education outcomes. Agricultural yield. Revenue performance. Busoga Situation Room. Same engine, recoordinated. One flag in the setup.</div>
+          </div>
+        </div>
+        <div class="rm-stage">
+          <div class="rm-stage-dot" style="background:var(--yellow)"></div>
+          <div class="rm-stage-content">
+            <div class="rm-stage-label">2028 – 2035</div>
+            <div class="rm-stage-title">Sub-county · Facility · Individual</div>
+            <div class="rm-stage-body">As data granularity improves, the coordinate frame tightens. The heat map zooms in. The policy question becomes surgical, not national.</div>
+          </div>
+        </div>
+        <div class="rm-stage">
+          <div class="rm-stage-dot" style="background:var(--lgreen)"></div>
+          <div class="rm-stage-content">
+            <div class="rm-stage-label">2035 – 2040</div>
+            <div class="rm-stage-title">Ten-Fold Growth Strategy · Live Tracking</div>
+            <div class="rm-stage-body">NDP IV targets are not reported quarterly — they are visible daily. The scalar output is no longer a document. It is a number on a screen that every minister can see.</div>
+          </div>
+        </div>
+        <div class="rm-stage">
+          <div class="rm-stage-dot" style="background:var(--blue)"></div>
+          <div class="rm-stage-content">
+            <div class="rm-stage-label">2040 – 2075</div>
+            <div class="rm-stage-title">East Africa · The Continent</div>
+            <div class="rm-stage-body">Uganda is the proof of concept. The architecture is sovereign, portable, and language-agnostic. Every African nation with district-level data can instantiate a twin. NPA becomes the model.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rm-invariant">
+        <div class="rm-inv-label">The invariant — what never changes</div>
+        <div class="rm-inv-body">The dropdown gets longer. The engine stays the same. The board member still sees one map, one colour, one direction. <strong>Complexity lives in the pipeline. Clarity lives on the screen.</strong> That is the value Ukubona protects across every expansion.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="slide-indicator">06 / 06</div>
 </section>
 
@@ -959,6 +1178,15 @@ body {
 </footer>
 
 <script>
+// ── ROADMAP TOGGLE ──
+var rmOpen = false;
+function rmTog() {
+  rmOpen = !rmOpen;
+  document.getElementById('rmPanel').classList.toggle('open', rmOpen);
+  document.getElementById('rmIcon').classList.toggle('open', rmOpen);
+  document.getElementById('rmBtn').style.borderRadius = rmOpen ? '8px 8px 0 0' : '8px';
+}
+
 // ── PENTAD TOGGLE ──
 var pCur = null;
 function pentTog(k) {
