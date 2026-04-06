@@ -3,1225 +3,316 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uganda Digital Twin · NPA Board · Ukubona LLC</title>
+<title>Ukubona LLC · NPA Digital Twin</title>
+<meta name="description" content="Uganda Mental Health Digital Twin — NPA Board Briefing · SUPRE 2025 · Ukubona LLC">
+<meta property="og:title" content="Ukubona LLC · NPA Digital Twin">
+<meta property="og:description" content="Uganda Mental Health Digital Twin — NPA Board Briefing · SUPRE 2025">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital@0;1&family=Source+Code+Pro:wght@400;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --black:   #080808;
-  --off:     #111210;
-  --dark:    #1a1c18;
-  --mid:     #2e3028;
-  --line:    #3a3d32;
-  --mute:    #6b7060;
-  --pale:    #b8bfaa;
-  --cream:   #e8e6df;
-  --white:   #f5f3ee;
-  --gold:    #c9a84c;
-  --gold2:   #e8c96b;
-  --red:     #c93b2a;
-  --orange:  #d4622a;
-  --yellow:  #c9a22a;
-  --lgreen:  #5a8c3a;
-  --green:   #2a6b3a;
-  --teal:    #2a6b6b;
-  --blue:    #2a4a8c;
-  --violet:  #5a3a8c;
-  --serif: 'Playfair Display', Georgia, serif;
-  --body:  'Libre Baskerville', Georgia, serif;
-  --mono:  'Source Code Pro', monospace;
-}
+  :root {
+    --ink:    #0f0e0d;
+    --ink2:   #3a3630;
+    --ink3:   #7a7268;
+    --ink4:   #b0a898;
+    --paper:  #faf8f4;
+    --paper2: #f0ece4;
+    --border: #d8d0c0;
+    --gold:   #b8860b;
+    --gold2:  #d4a017;
+    --blue:   #1a3a6b;
+    --bar-h:  48px;
+  }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+  }
 
-body {
-  font-family: var(--body);
-  background: var(--black);
-  color: var(--cream);
-  line-height: 1.65;
-  overflow-x: hidden;
-}
+  /* ── TOP BAR ── */
+  #topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--bar-h);
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
 
-/* ── SLIDE SYSTEM ── */
-.slide {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 5vw 8vw;
-  position: relative;
-  border-bottom: 1px solid var(--line);
-  transition: opacity 0.4s;
-}
+  .bar-left {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
 
-/* ── SLIDE 0: TITLE ── */
-.slide-title {
-  background: var(--black);
-  align-items: flex-start;
-  gap: 0;
-}
-.slide-title::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
-    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.018) 79px, rgba(255,255,255,0.018) 80px),
-    repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.018) 79px, rgba(255,255,255,0.018) 80px);
-  pointer-events: none;
-}
+  .bar-brand {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--gold2);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
 
-.eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  opacity: 0.8;
-}
-.slide-title h1 {
-  font-family: var(--serif);
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 400;
-  line-height: 1.0;
-  color: var(--white);
-  margin-bottom: 0.5rem;
-  position: relative;
-}
-.slide-title h1 em {
-  font-style: italic;
-  color: var(--gold2);
-}
-.slide-title .tagline {
-  font-family: var(--body);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  font-weight: 400;
-  font-style: italic;
-  color: var(--pale);
-  margin-bottom: 3rem;
-  max-width: 48ch;
-  line-height: 1.6;
-}
-.title-meta {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  padding-top: 1.5rem;
-  margin-top: 1rem;
-}
-.meta-item {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--mute);
-}
-.meta-item span { color: var(--pale); display: block; margin-top: 3px; font-size: 12px; }
+  .bar-sep {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.18);
+    letter-spacing: 0.05em;
+  }
 
-/* ── SLIDE HEADINGS ── */
-.slide-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: var(--mute);
-  margin-bottom: 1rem;
-}
-.slide h2 {
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 400;
-  line-height: 1.15;
-  color: var(--white);
-  margin-bottom: 1rem;
-}
-.slide h2 em { font-style: italic; color: var(--gold2); }
-.slide .lead {
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: var(--pale);
-  max-width: 60ch;
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
-  font-style: italic;
-}
+  .bar-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    white-space: nowrap;
+  }
 
-/* ── TWIN EMBED ── */
-.twin-wrap {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  background: var(--off);
-}
-.twin-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 18px;
-  border-bottom: 1px solid var(--line);
-  background: var(--dark);
-}
-.twin-dots { display: flex; gap: 7px; }
-.twin-dots span {
-  width: 11px; height: 11px; border-radius: 50%;
-  background: var(--line);
-}
-.twin-dots span:nth-child(1) { background: #c04040; }
-.twin-dots span:nth-child(2) { background: #c09040; }
-.twin-dots span:nth-child(3) { background: #40a040; }
-.twin-url {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--mute);
-  letter-spacing: 0.04em;
-}
-.twin-badge {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(201,168,76,0.1);
-  border: 1px solid rgba(201,168,76,0.25);
-  padding: 3px 8px;
-  border-radius: 3px;
-}
-.twin-iframe {
-  width: 100%;
-  height: 520px;
-  border: none;
-  display: block;
-}
-.twin-caption {
-  padding: 10px 18px;
-  background: var(--dark);
-  border-top: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--mute);
-  letter-spacing: 0.08em;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.twin-caption strong { color: var(--pale); }
+  .bar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-/* ── ROYGBIV DECODE ── */
-.roygbiv-decode {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin: 2rem 0 1rem;
-}
-.rdb {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 1rem 0.5rem;
-  border-radius: 6px;
-  background: var(--dark);
-  border: 1px solid var(--line);
-  transition: transform 0.15s, border-color 0.15s;
-  cursor: default;
-}
-.rdb:hover { transform: translateY(-3px); border-color: var(--mute); }
-.rdb-swatch {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.rdb-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--mute);
-  text-align: center;
-  line-height: 1.4;
-}
-.rdb-meaning {
-  font-size: 11px;
-  color: var(--pale);
-  text-align: center;
-  line-height: 1.4;
-}
-@media (max-width: 700px) {
-  .roygbiv-decode { grid-template-columns: repeat(4, 1fr); }
-}
+  .bar-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2ecc71;
+    flex-shrink: 0;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
 
-/* ── TENSOR EXPLAINER ── */
-.tensor-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-@media (max-width: 600px) { .tensor-grid { grid-template-columns: 1fr; } }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+  }
 
-.tensor-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 1.5rem;
-  background: var(--dark);
-  position: relative;
-  overflow: hidden;
-}
-.tensor-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-}
-.tc-red::before { background: var(--red); }
-.tc-gold::before { background: var(--gold); }
-.tc-green::before { background: var(--lgreen); }
-.tc-blue::before { background: var(--blue); }
+  .bar-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
 
-.tensor-card .t-n {
-  font-family: var(--serif);
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-  color: var(--white);
-}
-.tensor-card .t-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-bottom: 8px;
-}
-.tensor-card .t-body {
-  font-size: 13px;
-  color: var(--pale);
-  line-height: 1.7;
-  font-style: italic;
-}
+  .bar-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .bar-link:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.07);
+  }
 
-/* ── PENTAD PIPELINE ── */
-.pentad {
-  display: flex;
-  align-items: stretch;
-  margin: 2.5rem 0 1rem;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.pent-step {
-  flex: 1;
-  padding: 1.75rem 1rem 1.25rem;
-  text-align: center;
-  border-right: 1px solid var(--line);
-  background: var(--dark);
-  cursor: pointer;
-  transition: background 0.2s;
-  position: relative;
-}
-.pent-step:last-child { border-right: none; }
-.pent-step:hover, .pent-step.open { background: var(--mid); }
-.pent-step.open { box-shadow: inset 0 -3px 0 var(--gold); }
-.pent-sym {
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  color: var(--mute);
-  display: block;
-  margin-bottom: 6px;
-  transition: color 0.2s;
-}
-.pent-step.open .pent-sym, .pent-step:hover .pent-sym { color: var(--gold2); }
-.pent-name {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--pale);
-  display: block;
-}
-.pent-sub {
-  font-size: 10px;
-  color: var(--mute);
-  display: block;
-  margin-top: 3px;
-  font-style: italic;
-}
-@media (max-width: 600px) {
-  .pentad { flex-direction: column; }
-  .pent-step { border-right: none; border-bottom: 1px solid var(--line); }
-}
-.pent-panel {
-  display: none;
-  background: var(--off);
-  border: 1px solid var(--line);
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  padding: 1.5rem 2rem;
-  margin-bottom: 1rem;
-}
-.pent-panel.open { display: block; }
-.pent-panel-title {
-  font-family: var(--mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-.pent-panel-body {
-  font-size: 14px;
-  color: var(--pale);
-  line-height: 1.8;
-  max-width: 66ch;
-}
-.pent-panel-body strong { color: var(--white); font-weight: 600; }
+  /* ── LOADER ── */
+  #loader {
+    position: fixed;
+    top: var(--bar-h); left: 0; right: 0; bottom: 0;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 50;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  #loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-/* ── PIPELINE FLOW ── */
-.flow-chain {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 1.5rem 0 2rem;
-}
-.fc-node {
-  font-family: var(--mono);
-  font-size: 11px;
-  padding: 7px 16px;
-  border-radius: 5px;
-  background: var(--dark);
-  border: 1px solid var(--line);
-  color: var(--pale);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  transition: all 0.15s;
-}
-.fc-node.lit {
-  background: rgba(201,168,76,0.12);
-  border-color: rgba(201,168,76,0.4);
-  color: var(--gold2);
-}
-.fc-arr { color: var(--line); font-size: 14px; }
+  .loader-wordmark {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .loader-wordmark em {
+    font-style: italic;
+    color: var(--gold2);
+  }
 
-/* ── THE ARGUMENT ── */
-.argument-rows { margin: 2rem 0; }
-.arg-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--line);
-}
-.arg-row:last-child { border-bottom: none; }
-.arg-icon {
-  font-family: var(--serif);
-  font-size: 1.8rem;
-  color: var(--mute);
-  width: 40px;
-  flex-shrink: 0;
-  text-align: center;
-  line-height: 1;
-  padding-top: 2px;
-}
-.arg-content {}
-.arg-title {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  margin-bottom: 5px;
-}
-.arg-body {
-  font-size: 14px;
-  color: var(--pale);
-  line-height: 1.7;
-  font-style: italic;
-}
-.arg-body strong { color: var(--white); font-style: normal; font-weight: 600; }
+  .loader-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink4);
+    margin-top: -1.4rem;
+  }
 
-/* ── COST ARGUMENT ── */
-.cost-compare {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 2rem 0;
-}
-@media (max-width: 600px) { .cost-compare { grid-template-columns: 1fr; } }
-.cc-cell {
-  padding: 1.75rem 2rem;
-  background: var(--dark);
-}
-.cc-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-bottom: 0.75rem;
-}
-.cc-n {
-  font-family: var(--serif);
-  font-size: 2.5rem;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-.cc-n.bad { color: var(--red); }
-.cc-n.good { color: var(--lgreen); }
-.cc-body { font-size: 13px; color: var(--pale); line-height: 1.65; font-style: italic; }
+  /* animated progress track */
+  .loader-track {
+    width: 220px;
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+  }
+  .loader-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    border-radius: 1px;
+    animation: load 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  @keyframes load {
+    0%   { width: 0%; }
+    40%  { width: 65%; }
+    80%  { width: 88%; }
+    100% { width: 100%; }
+  }
 
-/* ── CLOSING BOX ── */
-.closing {
-  background: var(--off);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 3rem 2.5rem;
-  margin: 2.5rem 0;
-  position: relative;
-  overflow: hidden;
-}
-.closing::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 70% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-.closing-inner { position: relative; }
-.closing h3 {
-  font-family: var(--serif);
-  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--white);
-  margin-bottom: 1rem;
-}
-.closing h3 em { font-style: italic; color: var(--gold2); }
-.closing p {
-  font-size: 14px;
-  color: var(--pale);
-  line-height: 1.8;
-  max-width: 60ch;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-.closing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 1.5rem;
-}
-.cg-cell {
-  background: var(--dark);
-  padding: 1.1rem 1.25rem;
-}
-.cg-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--mute);
-  margin-bottom: 5px;
-}
-.cg-val {
-  font-size: 13px;
-  color: var(--pale);
-  line-height: 1.55;
-}
-.cg-val strong { color: var(--white); }
+  .loader-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink4);
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .loader-note-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold2);
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
 
-/* ── 50-YEAR ROADMAP ── */
-.roadmap-toggle {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 1.75rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--dark);
-  cursor: pointer;
-  margin: 1.5rem 0 0;
-  transition: background 0.2s, border-color 0.2s;
-}
-.roadmap-toggle:hover { background: var(--mid); border-color: var(--gold); }
-.rm-plus {
-  font-family: var(--serif);
-  font-size: 2rem;
-  color: var(--gold);
-  line-height: 1;
-  width: 32px;
-  flex-shrink: 0;
-  text-align: center;
-  transition: transform 0.3s;
-}
-.rm-plus.open { transform: rotate(45deg); }
-.rm-toggle-text { display: flex; flex-direction: column; gap: 3px; }
-.rm-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-}
-.rm-hint {
-  font-size: 13px;
-  color: var(--mute);
-  font-style: italic;
-}
+  /* ── IFRAME ── */
+  #frame-wrap {
+    position: fixed;
+    top: var(--bar-h); left: 0; right: 0; bottom: 0;
+  }
 
-.roadmap-panel {
-  display: none;
-  border: 1px solid var(--line);
-  border-top: none;
-  border-radius: 0 0 8px 8px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-}
-.roadmap-panel.open { display: block; }
-.roadmap-inner {
-  padding: 2rem 2.5rem;
-  background: var(--off);
-}
-.rm-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  opacity: 0.7;
-}
-.rm-headline {
-  font-family: var(--serif);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--white);
-  margin-bottom: 1rem;
-}
-.rm-headline em { font-style: italic; color: var(--gold2); }
-.rm-body {
-  font-size: 14px;
-  color: var(--pale);
-  line-height: 1.8;
-  font-style: italic;
-  max-width: 64ch;
-  margin-bottom: 2rem;
-}
+  #app-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background: var(--paper);
+  }
 
-.rm-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-left: 1px solid var(--line);
-  margin-left: 10px;
-  padding-left: 0;
-  margin-bottom: 2rem;
-}
-.rm-stage {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  padding: 1rem 0 1rem 1.5rem;
-  position: relative;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.15s;
-}
-.rm-stage:last-child { border-bottom: none; }
-.rm-stage:hover { background: rgba(255,255,255,0.02); }
-.rm-stage-dot {
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 3px;
-  position: absolute;
-  left: -7px;
-  box-shadow: 0 0 0 3px var(--off);
-}
-.rm-stage-content { padding-left: 0.5rem; }
-.rm-stage-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--mute);
-  margin-bottom: 4px;
-}
-.rm-stage-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 4px;
-  font-family: var(--body);
-}
-.rm-stage-body {
-  font-size: 13px;
-  color: var(--pale);
-  line-height: 1.65;
-  font-style: italic;
-}
-
-.rm-invariant {
-  background: var(--dark);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--gold);
-  border-radius: 0 6px 6px 0;
-  padding: 1.1rem 1.5rem;
-}
-.rm-inv-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-.rm-inv-body {
-  font-size: 13px;
-  color: var(--pale);
-  line-height: 1.7;
-  font-style: italic;
-}
-.rm-inv-body strong { color: var(--white); font-style: normal; }
-
-.site-footer {
-  padding: 2rem 8vw;
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  color: var(--gold);
-  font-style: italic;
-}
-.footer-note {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--mute);
-  text-transform: uppercase;
-}
-
-/* ── NAV DOTS ── */
-.nav-dots {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 100;
-}
-.nav-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--line);
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 1px solid var(--mute);
-}
-.nav-dot.active { background: var(--gold); border-color: var(--gold); transform: scale(1.3); }
-@media (max-width: 600px) { .nav-dots { display: none; } }
-
-/* ── SLIDE NUMBERS ── */
-.slide-indicator {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--mute);
-}
-
-/* ── HIGHLIGHT RULE ── */
-.rule {
-  display: block;
-  height: 1px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  margin: 1.25rem 0;
-  max-width: 200px;
-}
-.rule-full {
-  display: block;
-  height: 1px;
-  background: var(--line);
-  margin: 2rem 0;
-}
-
-/* ── QUOTE ── */
-.pullquote {
-  border-left: 2px solid var(--gold);
-  padding: 0.5rem 1.5rem;
-  margin: 1.5rem 0;
-  font-family: var(--serif);
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-style: italic;
-  color: var(--white);
-  line-height: 1.5;
-}
-.pullquote cite {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--mute);
-  margin-top: 0.75rem;
-}
-
-/* ── LIVE BADGE ── */
-.live-pulse {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--lgreen);
-  margin-bottom: 1.25rem;
-}
-.live-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--lgreen);
-  animation: pulse 1.6s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
+  /* ── RESPONSIVE: hide some bar items on small screens ── */
+  @media (max-width: 540px) {
+    .bar-status, .bar-sep { display: none; }
+    .bar-tag { font-size: 9px; letter-spacing: 0.08em; }
+  }
 </style>
 </head>
 <body>
 
-<!-- NAV DOTS -->
-<nav class="nav-dots" id="navDots">
-  <div class="nav-dot active" onclick="scrollToSlide(0)" title="Title"></div>
-  <div class="nav-dot" onclick="scrollToSlide(1)" title="The Twin Live"></div>
-  <div class="nav-dot" onclick="scrollToSlide(2)" title="Reading the Colors"></div>
-  <div class="nav-dot" onclick="scrollToSlide(3)" title="The Five Dimensions"></div>
-  <div class="nav-dot" onclick="scrollToSlide(4)" title="The Argument"></div>
-  <div class="nav-dot" onclick="scrollToSlide(5)" title="What This Enables"></div>
-</nav>
-
-<!-- SLIDE 0: TITLE -->
-<section class="slide slide-title" id="slide-0">
-  <div class="eyebrow">National Planning Authority · Board Briefing · Ukubona LLC</div>
-  <h1>Uganda,<br><em>seen whole.</em></h1>
-  <p class="tagline">A living digital twin that turns district-level data into a single, readable picture — and keeps it current.</p>
-  <div class="title-meta">
-    <div class="meta-item">Prepared for<span>NPA Board</span></div>
-    <div class="meta-item">Presented by<span>Vincent Mangeni, Manager ICT</span></div>
-    <div class="meta-item">System by<span>Ukubona LLC</span></div>
-    <div class="meta-item">Coverage<span>All 146 Districts</span></div>
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="bar-left">
+    <a class="bar-brand" href="https://ukb-0-method-sib-dt-v16.onrender.com/" target="_blank" rel="noopener">Ukubona</a>
+    <span class="bar-sep">·</span>
+    <span class="bar-tag">NPA Digital Twin · SUPRE 2025</span>
   </div>
-  <div class="slide-indicator">01 / 06</div>
-</section>
-
-<!-- SLIDE 1: LIVE TWIN -->
-<section class="slide" id="slide-1" style="padding-top: 4vw; padding-bottom: 4vw; justify-content: flex-start;">
-  <div class="slide-num">02 — The Product</div>
-  <h2>The twin, <em>live.</em></h2>
-  <p class="lead">This is not a static report. Every district is a coordinate. Every colour is a signal. Every dropdown is a question the board can ask.</p>
-
-  <div class="live-pulse">
-    <span class="live-dot"></span>
-    Live system · updates as data arrives
+  <div class="bar-right">
+    <div class="bar-dot" id="status-dot"></div>
+    <span class="bar-status" id="status-text">Connecting…</span>
+    <a class="bar-link" href="https://ukb-0-method-sib-dt-v16.onrender.com/" target="_blank" rel="noopener">Open ↗</a>
   </div>
+</div>
 
-  <div class="twin-wrap">
-    <div class="twin-header">
-      <div class="twin-dots"><span></span><span></span><span></span></div>
-      <div class="twin-url">ukubona-llc.github.io/npa-demo</div>
-      <div class="twin-badge">Uganda Digital Twin</div>
-    </div>
-    <iframe
-      class="twin-iframe"
-      src="https://ukubona-llc.github.io/npa-demo/"
-      title="Uganda Digital Twin — NPA Demo"
-      loading="lazy"
-      sandbox="allow-scripts allow-same-origin allow-forms"
-    ></iframe>
-    <div class="twin-caption">
-      <span>146 districts · all regions · all sectors</span>
-      <span><strong>Try the dropdown.</strong> Change the indicator. The map recolours instantly.</span>
-    </div>
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div>
+    <div class="loader-wordmark">Uku<em>bona</em></div>
+    <div class="loader-sub">National Planning Authority · Uganda</div>
   </div>
-
-  <div class="slide-indicator">02 / 06</div>
-</section>
-
-<!-- SLIDE 2: READING THE COLOURS -->
-<section class="slide" id="slide-2">
-  <div class="slide-num">03 — Reading the Map</div>
-  <h2>One colour.<br><em>One answer.</em></h2>
-  <p class="lead">No statistics required. No spreadsheet training required. The colour tells you where to look. The rest of the system tells you what to do.</p>
-
-  <div class="roygbiv-decode">
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#c93b2a"></div>
-      <div class="rdb-label">Red</div>
-      <div class="rdb-meaning">Critical — act now</div>
-    </div>
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#d4622a"></div>
-      <div class="rdb-label">Orange</div>
-      <div class="rdb-meaning">Urgent — monitor closely</div>
-    </div>
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#c9a22a"></div>
-      <div class="rdb-label">Yellow</div>
-      <div class="rdb-meaning">Elevated — early warning</div>
-    </div>
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#8ab83a"></div>
-      <div class="rdb-label">Lime</div>
-      <div class="rdb-meaning">Improving — watch</div>
-    </div>
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#2a6b3a"></div>
-      <div class="rdb-label">Green</div>
-      <div class="rdb-meaning">Stable — sustain</div>
-    </div>
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#2a6b6b"></div>
-      <div class="rdb-label">Teal</div>
-      <div class="rdb-meaning">Good — resource hub</div>
-    </div>
-    <div class="rdb">
-      <div class="rdb-swatch" style="background:#2a4a8c"></div>
-      <div class="rdb-label">Blue</div>
-      <div class="rdb-meaning">Best performing</div>
-    </div>
+  <div class="loader-track">
+    <div class="loader-fill"></div>
   </div>
-
-  <div class="pullquote">
-    Red is where we are losing.<br>
-    Blue is where we are stable.<br>
-    The dropdown changes <em>which question</em> we are asking — not how to read the answer.
+  <div class="loader-note">
+    <div class="loader-note-dot"></div>
+    Loading district digital twin
   </div>
+</div>
 
-  <div class="argument-rows">
-    <div class="arg-row">
-      <div class="arg-icon">⌖</div>
-      <div class="arg-content">
-        <div class="arg-title">Longitude + Latitude</div>
-        <div class="arg-body">Every district occupies a unique coordinate. Nothing is abstract. <strong>Gulu is Gulu. Kampala is Kampala.</strong> The system works on geography, not on categories someone invented in an office.</div>
-      </div>
-    </div>
-    <div class="arg-row">
-      <div class="arg-icon">↑</div>
-      <div class="arg-content">
-        <div class="arg-title">Altitude — the Heat Map</div>
-        <div class="arg-body">The colour is the third dimension: <strong>how severe is the situation here, right now?</strong> Red = worst. The gradient from red to blue is a policy priority queue, visible at a glance.</div>
-      </div>
-    </div>
-    <div class="arg-row">
-      <div class="arg-icon">▾</div>
-      <div class="arg-content">
-        <div class="arg-title">The Dropdown — the Policy Question</div>
-        <div class="arg-body">Teenage pregnancy. Mental health burden. Youth unemployment. Health facility access. <strong>The board selects the question and the map answers instantly.</strong> Same map, different altitude, different policy priority.</div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-indicator">03 / 06</div>
-</section>
-
-<!-- SLIDE 3: THE FIVE DIMENSIONS -->
-<section class="slide" id="slide-3">
-  <div class="slide-num">04 — How It Works</div>
-  <h2>Five dimensions.<br><em>One decision.</em></h2>
-  <p class="lead">The twin does not simplify the problem — it compresses it. Click any stage to see what it does.</p>
-
-  <div class="pentad" id="pentad">
-    <div class="pent-step" data-k="loc" onclick="pentTog('loc')">
-      <span class="pent-sym">⌖</span>
-      <span class="pent-name">Location</span>
-      <span class="pent-sub">lon · lat</span>
-    </div>
-    <div class="pent-step" data-k="alt" onclick="pentTog('alt')">
-      <span class="pent-sym">▲</span>
-      <span class="pent-name">State</span>
-      <span class="pent-sub">heat map</span>
-    </div>
-    <div class="pent-step" data-k="foc" onclick="pentTog('foc')">
-      <span class="pent-sym">▾</span>
-      <span class="pent-name">Focus</span>
-      <span class="pent-sub">dropdown</span>
-    </div>
-    <div class="pent-step" data-k="pip" onclick="pentTog('pip')">
-      <span class="pent-sym">→</span>
-      <span class="pent-name">Flow</span>
-      <span class="pent-sub">pipeline</span>
-    </div>
-    <div class="pent-step" data-k="ins" onclick="pentTog('ins')">
-      <span class="pent-sym">◎</span>
-      <span class="pent-name">Insight</span>
-      <span class="pent-sub">decision</span>
-    </div>
-  </div>
-
-  <div id="pp-loc" class="pent-panel">
-    <div class="pent-panel-title">Location — where exactly?</div>
-    <div class="pent-panel-body">Every district in Uganda has a fixed coordinate — longitude and latitude. The twin anchors every data point to a real place on the ground. <strong>Nothing floats as a national average.</strong> A figure like "24.2% mental health prevalence" is disaggregated: Gulu is not Kampala is not Karamoja. The coordinate is the foundation.</div>
-  </div>
-  <div id="pp-alt" class="pent-panel">
-    <div class="pent-panel-title">State — how bad is it here?</div>
-    <div class="pent-panel-body">The ROYGBIV colour encodes severity at a glance. <strong>Red districts demand immediate attention. Blue districts are the model to replicate.</strong> The gradient between them is a policy triage queue. Before any meeting, the board can see which ten districts need discussion — without reading a single table.</div>
-  </div>
-  <div id="pp-foc" class="pent-panel">
-    <div class="pent-panel-title">Focus — which question are we asking?</div>
-    <div class="pent-panel-body">The dropdown reframes the map without changing the underlying data. <strong>Switch from teenage pregnancy to mental health burden to workforce gaps — same 135 districts, different altitude, different priority queue.</strong> The board sets the agenda; the twin responds. This is the part that replaces a six-week consultant report with a thirty-second interaction.</div>
-  </div>
-  <div id="pp-pip" class="pent-panel">
-    <div class="pent-panel-title">Flow — how does data get here?</div>
-    <div class="pent-panel-body">The pipeline is what makes the twin <em>live</em>, not static. <strong>District → NPA → Ukubona engine → intervention target → district update.</strong> When a district officer enters new figures, the heat map updates. When an intervention is deployed, the outcome feeds back. There is no quarterly report delay — the system reflects reality as it changes.</div>
-  </div>
-  <div id="pp-ins" class="pent-panel">
-    <div class="pent-panel-title">Insight — what do we do?</div>
-    <div class="pent-panel-body">The twin does not make decisions. It makes decisions <em>possible</em>. A red district in the northwest with a workforce gap of 55% and a teenage pregnancy rate twice the national average is not a statistic — <strong>it is a specific instruction: deploy here, resource this, measure that.</strong> The insight is earned by running the full pipeline, not assumed from a national headline.</div>
-  </div>
-
-  <span class="rule-full"></span>
-
-  <p style="font-size: 13px; color: var(--mute); font-style: italic;">The pipeline, in full:</p>
-  <div class="flow-chain">
-    <span class="fc-node lit">District data</span>
-    <span class="fc-arr">→</span>
-    <span class="fc-node">NPA policy frame</span>
-    <span class="fc-arr">→</span>
-    <span class="fc-node lit">Ukubona engine</span>
-    <span class="fc-arr">→</span>
-    <span class="fc-node">Intervention target</span>
-    <span class="fc-arr">→</span>
-    <span class="fc-node lit">Outcome update</span>
-    <span class="fc-arr">→</span>
-    <span class="fc-node">District recalibrates</span>
-  </div>
-  <div class="slide-indicator">04 / 06</div>
-</section>
-
-<!-- SLIDE 4: THE ARGUMENT -->
-<section class="slide" id="slide-4">
-  <div class="slide-num">05 — The Finance Argument</div>
-  <h2>The cost of <em>not knowing.</em></h2>
-  <p class="lead">This is not a technology purchase. It is an economic argument. Uganda already has the data. The question is whether that data reaches decision-makers in time to be useful.</p>
-
-  <div class="cost-compare">
-    <div class="cc-cell">
-      <div class="cc-label">Cost of inaction — mental health alone</div>
-      <div class="cc-n bad">US$4.5B</div>
-      <div class="cc-body">Projected annual economic losses by 2040 under business-as-usual. SUPRE 2025 figures. Productivity loss dominates — not treatment costs. This number grows faster than GDP.</div>
-    </div>
-    <div class="cc-cell">
-      <div class="cc-label">The structural problem</div>
-      <div class="cc-n bad">71%</div>
-      <div class="cc-body">Rise in facility-reported mental health cases 2021–2024 — yet fewer than 1 in 10 people in need receive care. The cases are visible. The response is not matching.</div>
-    </div>
-    <div class="cc-cell">
-      <div class="cc-label">The workforce gap</div>
-      <div class="cc-n bad">55%</div>
-      <div class="cc-body">Of required district-level mental health posts are unfilled. 5,371 posts missing. <strong>96% of the gap is at community level</strong> — HC III, HC IV, General Hospital — not at national referral. The absence is precisely where early detection must happen.</div>
-    </div>
-    <div class="cc-cell">
-      <div class="cc-label">What the twin changes</div>
-      <div class="cc-n good">Latency → zero</div>
-      <div class="cc-body">The delay between reality on the ground and a decision at the centre is where the cost accumulates. <strong>The twin collapses that delay.</strong> No quarterly report cycle. No data lost in translation. No district invisible because they didn't submit on time.</div>
-    </div>
-  </div>
-
-  <div class="pullquote">
-    The data already exists.<br>
-    The workforce gaps are already counted.<br>
-    The question is: <em>how long does it take for that information to change what a district officer does on Monday morning?</em>
-    <cite>— The core planning argument</cite>
-  </div>
-
-  <div class="slide-indicator">05 / 06</div>
-</section>
-
-<!-- SLIDE 5: WHAT THIS ENABLES -->
-<section class="slide" id="slide-5">
-  <div class="slide-num">06 — What This Enables</div>
-  <h2>One engine.<br><em>Every territory.</em></h2>
-  <p class="lead">The same architecture that maps Uganda's districts maps a kingdom, a ministry, a municipality. The engine does not change — only the coordinate frame and the indicators.</p>
-
-  <div class="closing">
-    <div class="closing-inner">
-      <h3>The report tells you <em>what.</em><br>The twin tells you <em>where, when, and how much.</em></h3>
-      <p>SUPRE 2025 is a national-level picture. Its findings are correct and compelling. But a national average cannot tell a district health officer in Gulu what to do on Monday morning. The Ukubona digital twin compresses the national picture to district-level signals — specific, updatable, and directly linked from data collection through to outcome measurement.</p>
-
-      <div class="closing-grid">
-        <div class="cg-cell">
-          <div class="cg-label">What it shows</div>
-          <div class="cg-val"><strong>146 districts</strong> · ROYGBIV burden map · reweights instantly by policymaker priority</div>
-        </div>
-        <div class="cg-cell">
-          <div class="cg-label">What it replaces</div>
-          <div class="cg-val">Static reports that age on printing · national averages that hide district variation · planning without a feedback loop</div>
-        </div>
-        <div class="cg-cell">
-          <div class="cg-label">N = 2 or 3 variables</div>
-          <div class="cg-val">The twin does not require a PhD to read. <strong>Two or three variables</strong> surface the decision. Complexity lives in the engine; the output is a map and a direction.</div>
-        </div>
-        <div class="cg-cell">
-          <div class="cg-label">The feedback loop</div>
-          <div class="cg-val">Interventions are measured. The twin recalibrates. <strong>The system learns.</strong> That is the point of a digital twin — it is not a snapshot, it is a living instrument.</div>
-        </div>
-        <div class="cg-cell">
-          <div class="cg-label">Scalable to any territory</div>
-          <div class="cg-val">National · Kingdom · Ministry · District · Sub-county — same engine, different coordinate frame, different indicators.</div>
-        </div>
-        <div class="cg-cell">
-          <div class="cg-label">Data sovereignty</div>
-          <div class="cg-val"><strong>Whoever holds the API keys controls the data.</strong> In this model, the keys stay with Government. The compute is rented; the data is sovereign.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 50-YEAR ROADMAP EXPANDABLE -->
-  <div class="roadmap-toggle" onclick="rmTog()" id="rmBtn">
-    <span class="rm-plus" id="rmIcon">+</span>
-    <div class="rm-toggle-text">
-      <span class="rm-label">The 50-year roadmap</span>
-      <span class="rm-hint">Every new indicator is just a new dropdown item. The engine doesn't change.</span>
-    </div>
-  </div>
-
-  <div class="roadmap-panel" id="rmPanel">
-    <div class="roadmap-inner">
-      <div class="rm-eyebrow">NPA · Long Horizon · Ukubona LLC</div>
-      <h3 class="rm-headline">The tensor keeps expanding.<br><em>The scalar stays readable.</em></h3>
-      <p class="rm-body">Every new national priority — teenage pregnancy, climate stress, mineral revenue, youth employment, disease burden — is simply a new item in the dropdown. The engine does not change. The map does not change. The board's experience does not change. What changes is the depth of what Uganda can see about itself.</p>
-
-      <div class="rm-timeline">
-        <div class="rm-stage">
-          <div class="rm-stage-dot" style="background:var(--red)"></div>
-          <div class="rm-stage-content">
-            <div class="rm-stage-label">Now — 2026</div>
-            <div class="rm-stage-title">Uganda · Health &amp; Social Indicators</div>
-            <div class="rm-stage-body">146 districts. Mental health, teenage pregnancy, workforce gaps. The twin is live. The pipeline is open.</div>
-          </div>
-        </div>
-        <div class="rm-stage">
-          <div class="rm-stage-dot" style="background:var(--orange)"></div>
-          <div class="rm-stage-content">
-            <div class="rm-stage-label">2026 – 2028</div>
-            <div class="rm-stage-title">Every Ministry · Every Kingdom</div>
-            <div class="rm-stage-body">Education outcomes. Agricultural yield. Revenue performance. Busoga Situation Room. Same engine, recoordinated. One flag in the setup.</div>
-          </div>
-        </div>
-        <div class="rm-stage">
-          <div class="rm-stage-dot" style="background:var(--yellow)"></div>
-          <div class="rm-stage-content">
-            <div class="rm-stage-label">2028 – 2035</div>
-            <div class="rm-stage-title">Sub-county · Facility · Individual</div>
-            <div class="rm-stage-body">As data granularity improves, the coordinate frame tightens. The heat map zooms in. The policy question becomes surgical, not national.</div>
-          </div>
-        </div>
-        <div class="rm-stage">
-          <div class="rm-stage-dot" style="background:var(--lgreen)"></div>
-          <div class="rm-stage-content">
-            <div class="rm-stage-label">2035 – 2040</div>
-            <div class="rm-stage-title">Ten-Fold Growth Strategy · Live Tracking</div>
-            <div class="rm-stage-body">NDP IV targets are not reported quarterly — they are visible daily. The scalar output is no longer a document. It is a number on a screen that every minister can see.</div>
-          </div>
-        </div>
-        <div class="rm-stage">
-          <div class="rm-stage-dot" style="background:var(--blue)"></div>
-          <div class="rm-stage-content">
-            <div class="rm-stage-label">2040 – 2075</div>
-            <div class="rm-stage-title">East Africa · The Continent</div>
-            <div class="rm-stage-body">Uganda is the proof of concept. The architecture is sovereign, portable, and language-agnostic. Every African nation with district-level data can instantiate a twin. NPA becomes the model.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rm-invariant">
-        <div class="rm-inv-label">The invariant — what never changes</div>
-        <div class="rm-inv-body">The dropdown gets longer. The engine stays the same. The board member still sees one map, one colour, one direction. <strong>Complexity lives in the pipeline. Clarity lives on the screen.</strong> That is the value Ukubona protects across every expansion.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-indicator">06 / 06</div>
-</section>
-
-<footer class="site-footer">
-  <span class="footer-brand">Ukubona LLC</span>
-  <span class="footer-note">Source: SUPRE 2025 · NPA · December 2025</span>
-  <span class="footer-note">Kampala · 2025</span>
-</footer>
+<!-- APP IFRAME -->
+<div id="frame-wrap">
+  <iframe
+    id="app-frame"
+    src="https://ukb-0-method-sib-dt-v17.onrender.com/"
+    title="Ukubona NPA Digital Twin"
+    allow="fullscreen"
+    loading="eager"
+  ></iframe>
+</div>
 
 <script>
-// ── ROADMAP TOGGLE ──
-var rmOpen = false;
-function rmTog() {
-  rmOpen = !rmOpen;
-  document.getElementById('rmPanel').classList.toggle('open', rmOpen);
-  document.getElementById('rmIcon').classList.toggle('open', rmOpen);
-  document.getElementById('rmBtn').style.borderRadius = rmOpen ? '8px 8px 0 0' : '8px';
-}
+  const frame  = document.getElementById('app-frame');
+  const loader = document.getElementById('loader');
+  const dot    = document.getElementById('status-dot');
+  const status = document.getElementById('status-text');
 
-// ── PENTAD TOGGLE ──
-var pCur = null;
-function pentTog(k) {
-  var was = (pCur === k);
-  if (pCur) {
-    document.getElementById('pp-' + pCur).classList.remove('open');
-    document.querySelector('[data-k="' + pCur + '"]').classList.remove('open');
-  }
-  pCur = was ? null : k;
-  if (pCur) {
-    document.getElementById('pp-' + pCur).classList.add('open');
-    document.querySelector('[data-k="' + pCur + '"]').classList.add('open');
-  }
-}
+  // Minimum loader display of 1.4s so the animation completes gracefully
+  let frameReady = false;
+  let minTimeDone = false;
 
-// ── NAV DOTS ──
-var slides = document.querySelectorAll('.slide');
-var dots = document.querySelectorAll('.nav-dot');
-
-function scrollToSlide(i) {
-  slides[i].scrollIntoView({ behavior: 'smooth' });
-}
-
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting && e.intersectionRatio > 0.4) {
-      var idx = Array.from(slides).indexOf(e.target);
-      dots.forEach(function(d, i) {
-        d.classList.toggle('active', i === idx);
-      });
+  function tryHideLoader() {
+    if (frameReady && minTimeDone) {
+      loader.classList.add('hidden');
+      dot.style.background = '#2ecc71';
+      status.textContent = 'Live';
     }
-  });
-}, { threshold: 0.4 });
+  }
 
-slides.forEach(function(s) { observer.observe(s); });
+  setTimeout(() => { minTimeDone = true; tryHideLoader(); }, 1400);
+
+  frame.addEventListener('load', () => {
+    frameReady = true;
+    tryHideLoader();
+  });
+
+  // Fallback — if iframe never fires load (cross-origin), hide after 6s
+  setTimeout(() => {
+    frameReady = true;
+    tryHideLoader();
+  }, 6000);
+
+  // Status dot: turn amber while waiting
+  setTimeout(() => {
+    if (!frameReady) {
+      dot.style.background = '#f39c12';
+      status.textContent = 'Loading…';
+    }
+  }, 2000);
 </script>
 </body>
 </html>
